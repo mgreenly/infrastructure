@@ -1,6 +1,7 @@
 #
 # All environments re-use the same S3 bucket for terraform state
-# but for now still need separate dynamodb tables for each.
+# but for now we still need separate dynamodb tables for each
+# envrionment.
 #
 #     resource "aws_dynamodb_table" "{{subdomain}}" {
 #       name         = "{{fqdn}}"
