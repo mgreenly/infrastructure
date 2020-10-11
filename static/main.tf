@@ -6,7 +6,7 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform" {
   bucket = "terraform.logic-refinery.io"
   versioning {
-    enabled = false
+    enabled = true
   }
   server_side_encryption_configuration {
     rule {
