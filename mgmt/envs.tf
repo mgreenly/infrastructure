@@ -24,3 +24,13 @@ resource "aws_dynamodb_table" "k3s" {
     type = "S"
   }
 }
+
+resource "aws_dynamodb_table" "war" {
+  name         = "war.logic-refinery.io"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
