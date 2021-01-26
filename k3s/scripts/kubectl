@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ssh -q server.k3s.logic-refinery.io "sudo bash -c 'kubectl $@'"
