@@ -17,7 +17,7 @@ data "aws_dynamodb_table" "terraform" {
 
 terraform {
   backend "s3" {
-    profile = "logic-refinery"
+    profile        = "logic-refinery"
     bucket         = "terraform.logic-refinery.io"
     key            = "state/mgmt"
     region         = "us-east-2"
