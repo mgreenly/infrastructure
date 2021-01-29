@@ -1,10 +1,5 @@
-provider "aws" {
-  region = "us-east-2"
-  profile = "logic-refinery"
-}
-
 #
-# we keep the state for these in ../static
+# The S3 bucket and the dynamodb table used in this file are manged by ../static and must already exist
 #
 
 data "aws_s3_bucket" "terraform" {
@@ -12,7 +7,7 @@ data "aws_s3_bucket" "terraform" {
 }
 
 data "aws_dynamodb_table" "terraform" {
-  name  = "mgmt.logic-refinery.io"
+  name  = "terraform.logic-refinery.io"
 }
 
 terraform {
@@ -21,7 +16,12 @@ terraform {
     bucket         = "terraform.logic-refinery.io"
     key            = "state/mgmt"
     region         = "us-east-2"
-    dynamodb_table = "mgmt.logic-refinery.io"
+    dynamodb_table = "terraform.logic-refinery.io"
     encrypt        = true
   }
+}
+
+provider "aws" {
+  region  = "us-east-2"
+  profile = "logic-refinery"
 }

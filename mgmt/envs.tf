@@ -16,7 +16,7 @@
 #
 
 resource "aws_dynamodb_table" "space_prod" {
-  name         = "prod.terraform.space.logic-refinery.io"
+  name         = "terraform.prod.space.logic-refinery.io"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
@@ -26,7 +26,7 @@ resource "aws_dynamodb_table" "space_prod" {
 }
 
 resource "aws_dynamodb_table" "space_test" {
-  name         = "test.terraform.space.logic-refinery.io"
+  name         = "terraform.test.space.logic-refinery.io"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {

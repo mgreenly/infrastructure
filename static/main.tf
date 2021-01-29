@@ -17,8 +17,8 @@ resource "aws_s3_bucket" "terraform" {
   }
 }
 
-resource "aws_dynamodb_table" "mgmt" {
-  name         = "mgmt.logic-refinery.io"
+resource "aws_dynamodb_table" "terraform" {
+  name         = "terraform.logic-refinery.io"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
