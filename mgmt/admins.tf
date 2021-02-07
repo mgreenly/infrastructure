@@ -1,11 +1,17 @@
-# Admin users are defined here
+# Admins are defined here.
 #
-# Each user needs to add an entry to there $HOME/.ssh/config like the following
+# Admins have complete control of the resources in there project.
+#
+# Admins need to add an entry to there $HOME/.ssh/config like the following.
 #
 #    Host git-codecommit.*.amazonaws.com
 #      User {{PUBLIC_KEY_ID}}
 #      IdentityFile {{PATH_TO_CORRESONDING_PRIVATE_KEY}}
 #
+# The PUBLIC_KEY_ID can be obtained by running `terraform output`
+#
+
+
 
 #
 # Michael Greenly

@@ -25,6 +25,20 @@ resource "aws_dynamodb_table" "space_prod" {
   }
 }
 
+resource "aws_s3_bucket" "space_prod" {
+  bucket = "space.logic-refinery.io"
+  versioning {
+    enabled = false
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+
 resource "aws_dynamodb_table" "space_test" {
   name         = "terraform.test.space.logic-refinery.io"
   billing_mode = "PAY_PER_REQUEST"
@@ -32,5 +46,19 @@ resource "aws_dynamodb_table" "space_test" {
   attribute {
     name = "LockID"
     type = "S"
+  }
+}
+
+resource "aws_s3_bucket" "space_test" {
+  bucket = "test.space.logic-refinery.io"
+  versioning {
+    enabled = false
+  }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
   }
 }
