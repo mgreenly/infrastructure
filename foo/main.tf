@@ -4,14 +4,14 @@
 #
 
 data "aws_s3_bucket" "terraform" {
-  bucket = "terraform.logic-refinery.io"
+  bucket = "terraform.foo.logic-refinery.io"
 }
 
 data "aws_dynamodb_table" "terraform" {
-  name  = "terraform.logic-refinery.io"
+  name  = "terraform.foo.logic-refinery.io"
 }
 
-terraform { 
+terraform {
   backend "s3" {
     profile        = "logic-refinery"
     bucket         = "terraform.logic-refinery.io"
@@ -27,6 +27,12 @@ provider "aws" {
   profile = "logic-refinery"
 }
 
+#
+# import each of the projects
+#
+
+module "foo" { source = "./projects/foo" }
+module "bar" { source = "./projects/bar" }
 
 #
 # create global S3 buckets 
@@ -110,31 +116,9 @@ resource "aws_s3_bucket" "lr-none-p-ue2-s3bk-logicrefinery" {
 # the top level.
 #
 
-resource "aws_iam_user" "michaelgreenly" {
+resource "aws_iam_user" "michael_greenly" {
   name = "michael.greenly"
 }
-
-resource "aws_iam_access_key" "michaelgreenly" {
-  user    = aws_iam_user.michaelgreenly.name
-  pgp_key = "keybase:michaelgreenly"
-}
-
-
-#
-# import each of the projects
-#
-
-module "foo" { source = "./projects/foo" }
-module "bar" { source = "./projects/bar" }
-
-
-
-output "iam_access_keys" {
-  value = { 
-    "michaelgreenly" = aws_iam_access_key.michaelgreenly.encrypted_secret
-  }
-}
-
 
 # output "stuff" {
 #   value = module.foo.admins
